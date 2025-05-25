@@ -423,13 +423,13 @@
     <!-- Header -->
     <header class="main-header">
         <div class="container header-container">
-            <a href="#" class="logo">
+            <a href="index.html" class="logo">
                 <i class="fas fa-camera-retro logo-icon"></i>
                 <span class="logo-text">Trino<span>Share</span></span>
             </a>
             
             <nav class="nav-links">
-                <a href="#">Home</a>
+                <a href="index.html">Home</a>
                 <a href="#">Features</a>
                 <a href="#">Contact</a>
             </nav>
@@ -437,34 +437,34 @@
     </header>
 
     <!-- Login Section -->
-    <section class="login-section">
-        <div class="container login-container">
-            <div class="login-info">
-                <h1>Photographer Login</h1>
-                <p>Enter your credentials to access the admin dashboard</p>
-            </div>
-            
-            <div class="login-card">
-                <h2>Login</h2>
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="photographer@example.com" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" placeholder="••••••••" required>
-                        <i class="fas fa-eye password-toggle" id="togglePassword"></i>
-                    </div>
-                    
-                    <button type="submit" class="login-btn">
-                        Login <i class="fas fa-arrow-right"></i>
-                    </button>
-                </form>
-            </div>
+<section class="login-section">
+    <div class="container login-container">
+        <div class="login-info">
+            <h1>Photographer Login</h1>
+            <p>Enter your credentials to access the admin dashboard</p>
         </div>
-    </section>
+        
+        <div class="login-card">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="photographer@example.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                    <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    Login <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
 
     <!-- Footer -->
     <footer>
@@ -483,7 +483,7 @@
                 <div class="footer-links">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
                         <li><a href="#"><i class="fas fa-chevron-right"></i> About</a></li>
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Contact</a></li>
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
@@ -503,119 +503,65 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Sticky header effect
-            const header = document.getElementById('mainHeader');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 50) {
-                    header.classList.add('header-scrolled');
-                } else {
-                    header.classList.remove('header-scrolled');
+        // Toggle password visibility
+        const togglePassword = document.getElementById('togglePassword');
+        const password = document.getElementById('password');
+        
+        togglePassword.addEventListener('click', function() {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+
+        // Form submission with validation
+        const loginForm = document.getElementById('loginForm');
+        
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Check for correct credentials
+            if (email === 'admin@trinoshare.com' && password === 'admin123') {
+                // Redirect to admin page if credentials are correct
+                window.location.href = 'admin.html';
+            } else {
+                // Show error message for incorrect credentials
+                alert('Invalid email or password. Please try again.');
+                // Optionally clear the password field
+                document.getElementById('password').value = '';
+            }
+        });
+    });
+
+    // Navigation handling
+    document.addEventListener('DOMContentLoaded', function() {
+        const navLinks = document.querySelectorAll('.nav-links a');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Handle Home link separately
+                if (this.getAttribute('href') === 'index.html') {
+                    return; // Let browser handle normal navigation
+                }
+                
+                // Handle section links on current page
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
                 }
             });
-
-            // Mobile menu toggle
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const navLinks = document.getElementById('navLinks');
-            
-            mobileMenuBtn.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
-                this.innerHTML = navLinks.classList.contains('active') ? 
-                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-            });
-
-            // Close mobile menu when clicking a link
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', function() {
-                    if (navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                    }
-                });
-            });
-
-            // Smooth scroll for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    if (this.getAttribute('href') !== '#') {
-                        e.preventDefault();
-                        const target = document.querySelector(this.getAttribute('href'));
-                        if (target) {
-                            window.scrollTo({
-                                top: target.offsetTop - 80,
-                                behavior: 'smooth'
-                            });
-                        }
-                    }
-                });
-            });
-
-            // Set active nav link based on scroll position
-            const sections = document.querySelectorAll('section');
-            window.addEventListener('scroll', function() {
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    if (pageYOffset >= (sectionTop - 100)) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${current}` || 
-                        (current === '' && link.getAttribute('href') === '#')) {
-                        link.classList.add('active');
-                    }
-                });
-            });
-
-            // Animate elements when they come into view
-            const animateOnScroll = () => {
-                const elements = document.querySelectorAll('.step-card, .section-title, .event-card, .contact-info');
-                elements.forEach(element => {
-                    const elementPosition = element.getBoundingClientRect().top;
-                    const windowHeight = window.innerHeight;
-                    
-                    if (elementPosition < windowHeight - 100) {
-                        element.style.opacity = '1';
-                        element.style.transform = 'translateY(0)';
-                    }
-                });
-            };
-
-            // Set initial state for animated elements
-            document.querySelectorAll('.step-card, .section-title, .event-card, .contact-info').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(30px)';
-                el.style.transition = 'all 0.6s ease-out';
-            });
-
-            // Check on load and scroll
-            animateOnScroll();
-            window.addEventListener('scroll', animateOnScroll);
-
-            // Button hover effects
-            const buttons = document.querySelectorAll('.btn, .form-submit-btn');
-            buttons.forEach(button => {
-                button.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-3px)';
-                });
-                button.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
-
-            // Simple click handler for demo purposes
-            buttons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    if (this.getAttribute('href') === '#' || this.type === 'submit') {
-                        e.preventDefault();
-                        alert('This feature would be implemented in the live version!');
-                    }
-                });
-            });
-        }); // This was the missing closing brace for the DOMContentLoaded event listener
+        });
+    });
     </script>
 </body>
 </html>
