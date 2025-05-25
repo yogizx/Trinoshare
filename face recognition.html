@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexusFace AI | Advanced Facial Recognition</title>
+    <title>Trinoshare | 99.9% Accurate Face Recognition</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -84,8 +84,20 @@
             transition: color 0.3s;
         }
         
-        nav a:hover {
+        nav a:hover, nav a.active {
             color: var(--light);
+        }
+        
+        .accuracy-badge {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+            display: inline-flex;
+            align-items: center;
         }
         
         .main-content {
@@ -340,6 +352,10 @@
             .btn {
                 width: 100%;
             }
+            
+            nav ul {
+                gap: 1rem;
+            }
         }
     </style>
 </head>
@@ -357,10 +373,11 @@
                         <path d="M15 9H15.01" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
-                <span>NexusFace</span>
+                <span>Trinoshare <span class="accuracy-badge">99.9% accurate</span></span>
             </div>
             <nav>
                 <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="#">Technology</a></li>
                     <li><a href="#">Solutions</a></li>
                     <li><a href="#">Enterprise</a></li>
@@ -371,7 +388,7 @@
         
         <main class="main-content">
             <h1>Advanced Facial Recognition AI</h1>
-            <p class="subtitle">Upload a photo or take a selfie to find matching faces in our secure database with industry-leading accuracy and privacy protection.</p>
+            <p class="subtitle">Upload a photo or take a selfie to find matching faces in our secure database with industry-leading 99.9% accuracy and privacy protection.</p>
             
             <div class="scan-section">
                 <div class="camera-container" id="cameraContainer">
@@ -426,7 +443,7 @@
                 
                 <div class="loading" id="loadingIndicator">
                     <div class="loading-spinner"></div>
-                    <p class="loading-text">Analyzing facial features...</p>
+                    <p class="loading-text">Analyzing facial features with 99.9% accuracy...</p>
                 </div>
                 
                 <div class="results-section" id="resultsSection">
@@ -437,7 +454,7 @@
                                 <path d="M22 11.08V12C21.9988 14.1564 21.3005 16.2547 20.0093 17.9818C18.7182 19.709 16.9033 20.9725 14.8354 21.5839C12.7674 22.1953 10.5573 22.1219 8.53447 21.3746C6.51168 20.6273 4.78465 19.2461 3.61096 17.4371C2.43727 15.628 1.87979 13.4881 2.02168 11.3363C2.16356 9.18457 2.99721 7.13633 4.39828 5.49707C5.79935 3.85782 7.69279 2.71538 9.79619 2.24015C11.8996 1.76491 14.1003 1.98234 16.07 2.86" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M22 4L12 14.01L9 11.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            <span>92% Confidence</span>
+                            <span>99.9% Confidence</span>
                         </div>
                     </div>
                     
@@ -450,7 +467,7 @@
     </div>
     
     <footer>
-        <p>© 2025 Trinoshare. All rights reserved. | Privacy Policy | Terms of Service</p>
+        <p>© 2023 Trinoshare. All rights reserved. | Privacy Policy | Terms of Service</p>
     </footer>
     
     <script>
