@@ -752,7 +752,7 @@
             </a>
             
             <nav class="nav-links">
-                <a href="#">Home</a>
+                <a href="index.html">Home</a>
                 <a href="#">About</a>
                 <a href="#">Contact</a>
                 <a href="#">Privacy Policy</a>
@@ -1056,6 +1056,32 @@
                     stopCamera();
                 }
             });
+            document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('.nav-links a');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Handle Home link separately
+            if (this.getAttribute('href') === 'index.html') {
+                return; // Let browser handle normal navigation
+            }
+            
+            // Handle section links on current page
+            if (this.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+});
     </script>
 </body>
 </html>
